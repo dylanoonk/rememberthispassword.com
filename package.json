@@ -1,0 +1,23 @@
+{
+  "name": "rememberthispassword.com",
+  "version": "0.0.0",
+  "description": "The code for a passphrase generator that uses phrases from public domain works.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dylanoonk/rememberthispassword.com.git"
+  },
+  "author": "Dylan Oonk",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dylanoonk/rememberthispassword.com/issues"
+  },
+  "homepage": "https://github.com/dylanoonk/rememberthispassword.com#readme",
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^4.21.2"
+  }
+}
