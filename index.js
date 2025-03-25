@@ -98,6 +98,14 @@ app.get('/assets/:asset_name', (req, res) => {
     res.sendFile(assetPath);
 });
 
+app.get('/favicon.ico', (req, res) => {
+    const assetPath = path.join(__dirname, 'assets', 'favicon.ico');
+    if (!fs.existsSync(assetPath)) {
+        return res.status(404).send('Asset not found');
+    }
+    res.sendFile(assetPath);
+});
+
 app.post('/passphrase', (req, res) => {
     const books = getAllBooks();
     const randomBook = books[Math.floor(Math.random() * books.length)];

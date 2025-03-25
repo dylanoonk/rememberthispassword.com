@@ -5,110 +5,138 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>rememberthispassword.com</title>
     <style>
-      /* Global Reset to include padding and border in element's total width */
-      *,
-      *::before,
-      *::after {
-        box-sizing: border-box;
-      }
-
-      /* Global Styles */
-      body {
-        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-        margin: 0;
-        padding: 0;
-        background: linear-gradient(135deg, #f6f9fc, #e9eff5);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        min-height: 100vh;
-        color: #333;
-      }
-
-      /* Container/Card Styles */
-      .container {
-        background: #fff;
-        border-radius: 8px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        overflow: hidden;
-        max-width: 600px;
-        width: 90%;
-      }
-
-      .header {
-        background-color: #007bff;
-        color: #fff;
-        padding: 20px;
-        text-align: center;
-      }
-
-      .header h1 {
-        margin: 0;
-        font-size: 1.8em;
-      }
-
-      .content {
-        padding: 20px;
-        text-align: center;
-      }
-
-      textarea {
-        width: 100%;
-        height: 100px;
-        padding: 15px;
-        font-size: 1.2em;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        resize: none;
-        margin-bottom: 15px;
-      }
-
-      button {
-        background-color: #28a745;
-        border: none;
-        color: #fff;
-        padding: 10px 20px;
-        font-size: 1em;
-        border-radius: 4px;
-        cursor: pointer;
-        transition: background-color 0.3s;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-
-      button:hover {
-        background-color: #218838;
-      }
-
-      .retry-image {
-        width: 20px;
-        height: 20px;
-        margin-right: 8px;
-      }
-
-      .source {
-        font-size: 0.9em;
-        color: #777;
-        margin-top: 10px;
-      }
-
-      /* New Original Text Section */
-      .original-text {
-        background-color: #f8f9fa;
-        border-top: 1px solid #e9ecef;
-        padding: 15px;
-        text-align: left;
-        font-size: 1em;
-        color: #555;
-      }
-
-      .original-text h2 {
-        margin-top: 0;
-        font-size: 1.2em;
-        color: #007bff;
-      }
-    </style>
+        /* Global Reset to include padding and border in element's total width */
+        *,
+        *::before,
+        *::after {
+          box-sizing: border-box;
+        }
+  
+        /* Global Styles */
+        body {
+          font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+          margin: 0;
+          padding: 0;
+          background: linear-gradient(135deg, #f6f9fc, #e9eff5);
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          min-height: 100vh;
+          color: #333;
+        }
+  
+        /* Container/Card Styles */
+        .container {
+          background: #fff;
+          border-radius: 8px;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+          overflow: hidden;
+          max-width: 600px;
+          width: 90%;
+        }
+  
+        .header {
+          background-color: #007bff;
+          color: #fff;
+          padding: 20px;
+          text-align: center;
+        }
+  
+        .header h1 {
+          margin: 0;
+          font-size: 1.8em;
+        }
+  
+        .content {
+          padding: 20px;
+          text-align: center;
+        }
+  
+        /* Textarea Styles */
+        textarea {
+          width: 100%;
+          height: 100px;
+          padding: 15px;
+          font-size: 1.2em;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          resize: none;
+          margin-bottom: 15px;
+          text-align: center;
+          /* For vertical centering when it's a single line:
+             (100px height - 2*15px padding = 70px) */
+          line-height: 70px;
+        }
+  
+        /* Button Styles */
+        button {
+          background-color: #28a745;
+          border: none;
+          color: #fff;
+          padding: 10px 20px;
+          font-size: 1em;
+          border-radius: 4px;
+          cursor: pointer;
+          transition: background-color 0.3s;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          margin: 5px;
+        }
+  
+        button:hover {
+          background-color: #218838;
+        }
+  
+        .retry-image,
+        .copy-image {
+          width: 20px;
+          height: 20px;
+          margin-right: 8px;
+        }
+  
+        .source {
+          font-size: 0.9em;
+          color: #777;
+          margin-top: 10px;
+        }
+  
+        /* Original Text Section */
+        .original-text {
+          background-color: #f8f9fa;
+          border-top: 1px solid #e9ecef;
+          padding: 15px;
+          text-align: left;
+          font-size: 1em;
+          color: #555;
+        }
+  
+        .original-text h2 {
+          margin-top: 0;
+          font-size: 1.2em;
+          color: #007bff;
+        }
+  
+        /* Footer Section with Twitter and GitHub Links */
+        .footer {
+          text-align: center;
+          padding: 10px;
+          background: #f8f9fa;
+          border-top: 1px solid #e9ecef;
+          font-size: 0.9em;
+          color: #333;
+        }
+  
+        .footer a {
+          color: #007bff;
+          text-decoration: none;
+          margin: 0 5px;
+        }
+  
+        .footer a:hover {
+          text-decoration: underline;
+        }
+      </style>
   </head>
   <body>
     <div class="container">
@@ -116,23 +144,30 @@
         <h1>Remember This Password</h1>
       </div>
       <div class="content">
-        <textarea id="passphrase">
-This is a randomly generated passphrase</textarea
-        >
-        <button onclick="generatePassphrase()">
-          <img
-            class="retry-image"
-            src="/assets/retry.svg"
-            alt="Retry"
-          />
-          Generate New Passphrase
-        </button>
+        <textarea id="passphrase">This is a randomly generated passphrase</textarea>
+        <div class="button-group">
+            <button onclick="generatePassphrase()">
+              <img class="retry-image" src="/assets/retry.svg" alt="Retry"/> 
+              Generate New Passphrase
+            </button>
+            <button onclick="copyPassphrase()">
+              <img class="copy-image" src="/assets/copy.svg" alt="Copy"/> 
+              Copy
+            </button>
+          </div>
         <p class="source" id="source">Source: Some Public Domain Work</p>
       </div>
       <div class="original-text">
         <h2>Original Text</h2>
         <p id="original-text">
           This is a randomly generated passphrase
+        </p>
+      </div>
+      <div class="footer">
+        <p>
+          <a href="https://x.com/DylanOonk" target="_blank">Twitter</a> | 
+          <a href="https://github.com/dylanoonk/rememberthispassword.com" target="_blank">GitHub</a> |
+          <a href="https://www.gutenberg.org" target="_blank">Gutenberg.org</a>
         </p>
       </div>
     </div>
@@ -164,6 +199,19 @@ This is a randomly generated passphrase</textarea
         } catch (error) {
           console.error("Error fetching passphrase:", error);
         }
+      }
+
+      function copyPassphrase() {
+        const passphraseElement = document.getElementById("passphrase");
+        const text = passphraseElement.value;
+        navigator.clipboard
+          .writeText(text)
+          .then(() => {
+            console.log("Passphrase copied to clipboard.");
+          })
+          .catch((err) => {
+            console.error("Could not copy text: ", err);
+          });
       }
 
       generatePassphrase();
