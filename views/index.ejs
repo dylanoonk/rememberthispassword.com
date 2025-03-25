@@ -1,61 +1,172 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>rememberthispassword.com</title>
     <style>
-        body {
-        font-family: sans-serif;
+      /* Global Reset to include padding and border in element's total width */
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+
+      /* Global Styles */
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0;
+        padding: 0;
+        background: linear-gradient(135deg, #f6f9fc, #e9eff5);
         display: flex;
         justify-content: center;
         align-items: center;
         min-height: 100vh;
-        background-color: #f0f0f0;
-        }
-        
-        
-        .container {
+        color: #333;
+      }
+
+      /* Container/Card Styles */
+      .container {
+        background: #fff;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        max-width: 600px;
+        width: 90%;
+      }
+
+      .header {
+        background-color: #007bff;
+        color: #fff;
+        padding: 20px;
         text-align: center;
-        }
-        
-        
-        textarea {
-        width: 500px;
-        height: 150px;
-        padding: 10px;
+      }
+
+      .header h1 {
+        margin: 0;
+        font-size: 1.8em;
+      }
+
+      .content {
+        padding: 20px;
+        text-align: center;
+      }
+
+      textarea {
+        width: 100%;
+        height: 100px;
+        padding: 15px;
         font-size: 1.2em;
         border: 1px solid #ccc;
-        border-radius: 5px;
-        margin-bottom: 10px;
-        }
-        
-        
-        button {
-        padding: 10px 15px;
-        font-size: 1em;
+        border-radius: 4px;
+        resize: none;
+        margin-bottom: 15px;
+      }
+
+      button {
+        background-color: #28a745;
         border: none;
-        background-color: #007bff;
-        color: white;
-        border-radius: 5px;
+        color: #fff;
+        padding: 10px 20px;
+        font-size: 1em;
+        border-radius: 4px;
         cursor: pointer;
-        }
-        
-        
-        .source {
-        font-style: italic;
+        transition: background-color 0.3s;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      button:hover {
+        background-color: #218838;
+      }
+
+      .retry-image {
+        width: 20px;
+        height: 20px;
+        margin-right: 8px;
+      }
+
+      .source {
+        font-size: 0.9em;
         color: #777;
-        }
+        margin-top: 10px;
+      }
+
+      /* New Original Text Section */
+      .original-text {
+        background-color: #f8f9fa;
+        border-top: 1px solid #e9ecef;
+        padding: 15px;
+        text-align: left;
+        font-size: 1em;
+        color: #555;
+      }
+
+      .original-text h2 {
+        margin-top: 0;
+        font-size: 1.2em;
+        color: #007bff;
+      }
     </style>
-</head>
-
-<body>
+  </head>
+  <body>
     <div class="container">
-        <textarea>This is a randomly generated passphrase</textarea>
-        <button><img src="/assets/retry.svg" alt="Retry"></button>
-        <p class="source">Source: Some Public Domain Work</p>
+      <div class="header">
+        <h1>Remember This Password</h1>
+      </div>
+      <div class="content">
+        <textarea id="passphrase">
+This is a randomly generated passphrase</textarea
+        >
+        <button onclick="generatePassphrase()">
+          <img
+            class="retry-image"
+            src="/assets/retry.svg"
+            alt="Retry"
+          />
+          Generate New Passphrase
+        </button>
+        <p class="source" id="source">Source: Some Public Domain Work</p>
+      </div>
+      <div class="original-text">
+        <h2>Original Text</h2>
+        <p id="original-text">
+          This is a randomly generated passphrase
+        </p>
+      </div>
     </div>
-</body>
 
+    <script>
+      async function generatePassphrase() {
+        const passphraseElement = document.getElementById("passphrase");
+        const sourceElement = document.getElementById("source");
+        const originalTextElement = document.getElementById("original-text");
+
+        try {
+          const response = await fetch("/passphrase", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          });
+
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+
+          const passphrase = await response.json();
+
+          passphraseElement.value = passphrase.passphrase;
+          sourceElement.textContent = `Source: ${passphrase.book}`;
+          originalTextElement.textContent = passphrase.original;
+          console.log(passphrase);
+        } catch (error) {
+          console.error("Error fetching passphrase:", error);
+        }
+      }
+
+      generatePassphrase();
+    </script>
+  </body>
 </html>
