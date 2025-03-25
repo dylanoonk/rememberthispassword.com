@@ -1,6 +1,6 @@
 name = "rememberthispassword.com"
 main = "index.js"
-compatibility_date = "2023-04-19"
+
 
 compatibility_flags = [ "nodejs_compat" ]
 compatibility_date = "2024-09-23"
