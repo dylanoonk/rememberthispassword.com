@@ -106,6 +106,14 @@ app.get('/favicon.ico', (req, res) => {
     res.sendFile(assetPath);
 });
 
+app.get('/robots.txt', (req, res) => {
+    const assetPath = path.join(__dirname, 'assets', 'robots.txt');
+    if (!fs.existsSync(assetPath)) {
+        return res.status(404).send('Asset not found');
+    }
+    res.sendFile(assetPath);
+});
+
 app.post('/passphrase', (req, res) => {
     const books = getAllBooks();
     const randomBook = books[Math.floor(Math.random() * books.length)];
