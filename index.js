@@ -129,13 +129,13 @@ app.post('/passphrase', (req, res) => {
 
 // Handle 404
 app.use((req, res) => {
-    res.status(404).render('404', { title: '404', message: 'Page not found' });
+    res.status(404).render('404', { title: '404' });
 });
 
 // Handle 500
 app.use((err, req, res, next) => {
     console.error(err.stack);
-    res.status(500).render('500', { title: '500', message: 'Internal Server Error' });
+    res.status(500).render('500', { title: '500' });
 });
 
 // Start the server
