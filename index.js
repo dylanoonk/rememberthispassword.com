@@ -129,7 +129,7 @@ app.post('/passphrase', (req, res) => {
 
 // Handle 404
 app.use((req, res) => {
-    res.status(404).render('404', { title: '404' });
+    res.status(404).render('404');
 });
 
 // Handle 500
