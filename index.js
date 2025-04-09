@@ -135,7 +135,7 @@ app.use((req, res) => {
 // Handle 500
 app.use((err, req, res, next) => {
     console.error(err.stack);
-    res.status(500).render('500', { title: '500' });
+    res.status(500).render('500');
 });
 
 // Start the server
